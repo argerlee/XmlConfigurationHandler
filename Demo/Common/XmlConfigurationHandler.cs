@@ -5,7 +5,7 @@ using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
-// 2025.04.29
+// 2025.05.01
 
 namespace Common
 {
@@ -323,13 +323,14 @@ namespace Common
             string formatString = string.Empty;
             if (digits > -1)
             {
-                formatString = "G" + digits.ToString();
+                formatString = "0.";
 
-                //(3.1230000).ToString("F6");    結果是 3.516000
-                //(3.1230000).ToString("F6");    result is 3.516000
+                for (int i = 0; i < digits; i++)
+                {
+                    formatString += "#";
+                }
 
-                //(3.1230000).ToString("G6");    結果是 3.516
-                //(3.1230000).ToString("G6");    result is 3.516
+                //(3.1230000).ToString("0.####");    結果是 3.123
             }
 
             string stringToWrite = Value.ToString(formatString);
